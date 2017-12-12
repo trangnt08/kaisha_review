@@ -1,4 +1,4 @@
-<%= form_with(model: company, local: true) do |form| %>
+<%= form_for(@company, {multipart: true}) do |form| %>
   <% if company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :logo %>
-    <%= form.text_field :logo, id: :company_logo %>
+    <%= form.file_field :logo, id: :company_logo %>
   </div>
 
   <div class="field">

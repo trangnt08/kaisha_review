@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title><%= full_title(yield(:title)) %> | "Kaisha Review"</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+  </head>
+<body>
+	<% if user_signed_in? %>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "sample app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+	<h3>Hello, <%= current_user.email %></h3>
+	<% else %>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "sample app", '#', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+	<% end %>
+	<hr>
+	<%= yield %>
+</body>
+</html>
